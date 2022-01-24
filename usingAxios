@@ -1,0 +1,30 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+const url = "https://jsonplaceholder.typicode.com/users";
+
+export function List() {
+  const [names, setNames] = useState([]);
+  useEffect(() => {
+      axios.get(url).then((response) => {
+      setNames(response.data);
+    });
+  }, []);
+  return (
+    <div className="App">
+      <div>
+        {names.map((value) => (
+          <div key={value.id}>
+            name={value.name}
+            username={value.username}
+            
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+
+  );
+
+}
